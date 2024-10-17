@@ -52,6 +52,7 @@ RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> 
 
 RUN sudo apt-get update \
     && sudo apt-get install -y \
+    joystick \
     evtest \ 
     jstest-gtk \
     python3-serial \ 
@@ -68,6 +69,7 @@ RUN sudo apt-get update \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
     psmisc \
+    libserial-dev \
     && sudo rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /home/ubuntu/.config \

@@ -1,0 +1,21 @@
+{
+    "name": "humble desktop",
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+      "--privileged",
+      "--network=host",
+      "--ipc=host",
+      "-v",
+      "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+      "--env=DISPLAY",
+      "-v",
+      "/dev/input:/dev/input",
+      "--device-cgroup-rule=c 13:* rmw"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/${localWorkspaceFolderBasename},type=bind",
+    "workspaceFolder": "/${localWorkspaceFolderBasename}",
+    "mounts": [
+      "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind"
+    ]
+  }
+  

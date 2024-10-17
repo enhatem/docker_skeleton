@@ -1,5 +1,16 @@
 FROM osrf/ros:humble-desktop
 
+RUN apt-get update \ 
+    && apt-get install -y \
+    nano \
+    vim \
+    bash-completion \
+    python3-argcomplete \
+    ros-humble-xacro \
+    ros-humble-joint-state-publisher-gui \
+    ros-humble-gazebo-ros-pkgs \
+    && rm -rf /var/lib/apt/lists/*
+
 # Add ubuntu user with same UID and GID as your host system, if it doesn't already exist
 # Since Ubuntu 24.04, a non-root user is created by default with the name vscode and UID=1000
 ARG USERNAME=ubuntu
@@ -22,13 +33,13 @@ USER $USERNAME
 RUN sudo usermod --append --groups video $USERNAME
 
 # Update all packages
-RUN sudo apt-get update && sudo apt upgrade -y
+RUN sudo apt update && sudo apt upgrade -y
 
 # Install Git
-RUN sudo apt-get install -y git
+RUN sudo apt install -y git
 
 # Rosdep update
-# RUN rosdep update
+RUN rosdep update
 
 # Source the ROS setup file
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
@@ -36,7 +47,9 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 ################################
 ## ADD ANY CUSTOM SETUP BELOW ##
 ################################
-# Programs for testing devices
+
+RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
+
 RUN sudo apt-get update \
     && sudo apt-get install -y \
     evtest \ 
@@ -56,3 +69,6 @@ RUN sudo apt-get update \
     ros-humble-nav2-bringup \
     psmisc \
     && sudo rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /home/ubuntu/.config \
+    && touch /home/ubuntu/.config/jstest-gtk

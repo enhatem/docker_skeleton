@@ -65,6 +65,7 @@ RUN sudo apt-get update \
     ros-humble-ros2-control \
     ros-humble-ros2-controllers \
     ros-humble-gazebo-ros2-control \
+    ros-humble-twist-stamper \
     ros-humble-slam-toolbox \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \

@@ -69,6 +69,7 @@ RUN sudo apt-get update \
     ros-humble-slam-toolbox \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
+    ros-humble-turtlebot3* \
     psmisc \
     libserial-dev \
     && sudo rm -rf /var/lib/apt/lists/*
